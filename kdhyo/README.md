@@ -22,3 +22,23 @@
   - 하이버네이트는 엔티티를 영속화 할 때, 컬렉션을 감싸서 하이버네이트가 제공하는 컬렉션으로 변경한다.  
     만약 임의의 메서드에서 컬렉션을 잘못 생성하면 하이버네이트 내부 메커니즘에 문제가 발생할 수 있다.  
     따라서 필드레벨에서 생성하는 것이 가장 안전하고, 코드도 간결하다.
+
+## @NoArgsConstructor(access = AccessLevel.PROTECTED)
+
+```
+protected Order() {
+}
+```
+
+## Entity Mapping cascade
+
+```
+@OneToMany(mappedBy = "order", cascade = ALL)
+```
+
+- cascade 가 ALL인 경우 상위 Entity가 persist될 때 같이 persist 가 된다.
+
+### cascade 주의 점
+- Order만 OrderItem, Delicery를 사용하기 때문에 이런 방식을 한거고, 아닌 경우에는 안하는 게 좋다.  
+  개념이 잘 안잡혔을 경우는 안 쓰는 게 좋고, 나중에 리팩토링을 하는 게 좋다.  
+  라이프사이클을 잘 알고 사용하자!
