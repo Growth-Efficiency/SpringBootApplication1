@@ -13,8 +13,7 @@ import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Table(name = "orders")
-@Getter
-@Setter
+@Getter @Setter
 public class Order {
 
     @Id @GeneratedValue
